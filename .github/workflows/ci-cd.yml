@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  ACR_NAME: todoregistry        # your Azure Container Registry name
+  ACR_NAME: todoregistry1086        # your Azure Container Registry name
   AKS_CLUSTER: todo-aks         # your AKS cluster name
   RESOURCE_GROUP: todo-app-rg   # your resource group name
   IMAGE_NAME: todo-app
