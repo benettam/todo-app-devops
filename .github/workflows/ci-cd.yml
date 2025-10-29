@@ -33,7 +33,7 @@ jobs:
           docker push $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.run_number }}
 
       - name: Set AKS context
-        run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_CLUSTER --overwrite-existing
+        run: az aks get-credentials --resource-group $RESOURCE_GROUP --name todo-app-aks --overwrite-existing
 
       - name: Deploy to AKS
         run: |
