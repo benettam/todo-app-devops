@@ -1,0 +1,20 @@
+---
+- name: Deploy To-Do App to AKS
+  hosts: localhost
+  tasks:
+    - name: Apply Deployment
+      command: kubectl apply -f ../k8s/deployment.yaml
+
+    - name: Apply Service
+      command: kubectl apply -f ../k8s/service.yaml
+
+    - name: Wait for LoadBalancer IP
+      shell: kubectl get svc todo-app-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+      register: lb_ip
+      until: lb_ip.stdout != ""
+      retries: 10
+      delay: 15
+
+    - name: Display LoadBalancer IP
+      debug:
+        msg: "App available at http://{{ lb_ip.stdout }}"
